@@ -7,7 +7,8 @@ public class Principal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+//asdasdfasdfsadf
+		
 		PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
 		preguntaRespuesta.cargarPreguntas();
 		preguntaRespuesta.cargarRespuestas();
