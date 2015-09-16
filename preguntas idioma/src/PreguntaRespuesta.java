@@ -7,7 +7,9 @@ public class PreguntaRespuesta {
 	ArrayList<String> respuestas = new ArrayList<String>();
 	
 	public void cargarPreguntas(){
+		//this is a holy shit
 		
+		//hghghg
 		preguntas.add("este video es para aquellos que os esteis preparando para una entrevista de trabajo en ingles");
 		preguntas.add("He selecionado algunas posibles respuestas");
 		preguntas.add("Te estoy dando algunos consejos utiles");
