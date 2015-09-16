@@ -43,7 +43,7 @@ public class VentanaPrincipa {
 	}
 
 	private void mostrarPregunta() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stuboiulkuj
 				PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
 				preguntaRespuesta.cargarPreguntas();
 				preguntaRespuesta.cargarRespuestas();
