@@ -1,8 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
-
 public class Principal {
 
 	public static void main(String[] args) {
@@ -20,11 +18,10 @@ public class Principal {
 			try {
 				Scanner scan = new Scanner(System.in);
 				scan.nextLine();
-				System.out
-						.println(preguntaRespuesta.getRespuestas().get(valor));
+				System.out.println(preguntaRespuesta.getRespuestas().get(valor));
 				scan.nextLine();
-
 			} catch (Exception e) {
+				System.out.println("Francisco le come el chichi a Natalia");
 			}
 
 		}
