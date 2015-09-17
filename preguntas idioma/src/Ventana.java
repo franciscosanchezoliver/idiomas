@@ -11,9 +11,11 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.io.File;
 import java.util.HashMap;
 
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -22,6 +24,11 @@ public class Ventana {
 
 	private JFrame frame;
 	private HashMap componentMap;
+	private PreguntaRespuesta pregResp = new PreguntaRespuesta();
+	
+	
+	private String directorioEntrada = System.getProperty("user.dir") + File.separator + "src"
+			+ File.separator + "PregResp";
 
 	/**
 	 * Launch the application.
@@ -51,8 +58,7 @@ public class Ventana {
 		createComponentMap();
 		JLabel labelPregunta =  (JLabel) getComponentByName("labelPregunta");
 		labelPregunta.setText("La Bar-Ba-Coa");
-		
-		
+		this.pregResp.cargarPreguntas(this.directorioEntrada);
 	}
 
 	/**
@@ -98,15 +104,21 @@ public class Ventana {
 		lblLabelPregunta.setBounds(10, 11, 414, 76);
 		frame.getContentPane().add(lblLabelPregunta);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setName("labelRespuesta");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
-		lblNewLabel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblNewLabel_1.setBounds(10, 163, 414, 76);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel lblLabelRespuesta = new JLabel("New label");
+		lblLabelRespuesta.setName("labelRespuesta");
+		lblLabelRespuesta.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLabelRespuesta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		lblLabelRespuesta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		lblLabelRespuesta.setBounds(10, 163, 414, 76);
+		frame.getContentPane().add(lblLabelRespuesta);
 		
 		JButton btnNewButton = new JButton("Check");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblLabelRespuesta.setVisible(true);
+			}
+		});
 		btnNewButton.setName("botonCheck");
 		btnNewButton.setBounds(94, 99, 99, 37);
 		frame.getContentPane().add(btnNewButton);
@@ -115,13 +127,12 @@ public class Ventana {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				cargarSiguientePregunta();
+				String vector[] = pregResp.getSiguientePregunta();
+				lblLabelPregunta.setText(vector[0]);
+				lblLabelRespuesta.setText(vector[1]);
+				lblLabelRespuesta.setVisible(false);
 			}
 
-			private void cargarSiguientePregunta() {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		btnNewButton_1.setName("botonNext");
 		btnNewButton_1.setBounds(225, 98, 99, 38);

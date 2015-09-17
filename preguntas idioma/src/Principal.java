@@ -12,7 +12,7 @@ public class Principal {
 		// TODO Auto-generated method stub
 		PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
 		preguntaRespuesta.cargarPreguntas(directorioEntrada);
-
+		preguntaRespuesta.getSiguientePregunta();
 	}
 
 }

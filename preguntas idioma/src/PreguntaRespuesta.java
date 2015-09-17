@@ -25,4 +25,16 @@ public class PreguntaRespuesta {
 		}
 	} //Fin cargarPreguntas
 	
+	public String[] getSiguientePregunta(){
+		String[] vector = new String [2];
+		
+		// Get a random entry from the HashMap.
+		Object[] maptoArray = this.entrevista.keySet().toArray();
+		Object key = maptoArray[new Random().nextInt(maptoArray.length)];
+		
+		vector[0]= (String) key;
+		vector[1]= this.entrevista.get(key);
+		return vector;
+	}
+	
 } // Fin clase
