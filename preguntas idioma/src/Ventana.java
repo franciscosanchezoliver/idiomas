@@ -1,34 +1,17 @@
-import java.awt.Component;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-import java.io.File;
-import java.util.HashMap;
-
-import javax.swing.JButton;
-
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.io.File;
 
+public class Ventana extends JFrame{
 
-public class Ventana {
-
-	private JFrame frame;
-	private HashMap componentMap;
+	private JFrame ventanaForm;
 	private PreguntaRespuesta pregResp = new PreguntaRespuesta();
-	
-	
-	private String directorioEntrada = System.getProperty("user.dir") + File.separator + "src"
-			+ File.separator + "PregResp";
+
+	private String directorioEntrada = System.getProperty("user.dir")
+			+ File.separator + "src" + File.separator + "PregResp";
 
 	/**
 	 * Launch the application.
@@ -38,102 +21,95 @@ public class Ventana {
 			public void run() {
 				try {
 					Ventana window = new Ventana();
-					window.frame.setVisible(true);
-					
+					window.ventanaForm.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-
-
 		});
 	}
 
-	
 	/**
 	 * Create the application.
 	 */
 	public Ventana() {
+		super();
 		initialize();
-		createComponentMap();
 		this.pregResp.cargarPreguntas(this.directorioEntrada);
 	}
-
-	/**
-	 * 
-	 * Metodo: Crea el hashMap que contiene los componentes de la ventana
-	 */
-	private void createComponentMap() {
-	       componentMap = new HashMap<String,Component>();
-	        Component[] components = frame.getContentPane().getComponents();
-	        
-	        for (int i=0; i < components.length; i++) {
-	                componentMap.put(components[i].getName(), components[i]);
-	        }
-	}
-	
-	/**
-	 * 
-	 * Metodo: recupera un componente en concreto
-	 * @param Nombre del componente
-	 * @return
-	 */
-	public Component getComponentByName(String name) {
-        if (componentMap.containsKey(name)) {
-                return (Component) componentMap.get(name);
-        }
-        else return null;
-}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 496, 334);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
-		JLabel lblLabelPregunta = new JLabel("PREGUNTA EN ESPAÑOL");
-		lblLabelPregunta.setName("labelPregunta");
-		lblLabelPregunta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblLabelPregunta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLabelPregunta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 17));
-		lblLabelPregunta.setBounds(10, 11, 414, 76);
-		frame.getContentPane().add(lblLabelPregunta);
+		//---------------------------------------------
+		ventanaForm = new JFrame();
+		ventanaForm.setResizable(false);
+		ventanaForm.setTitle("PROGRAMILLA GUAY");
+		ventanaForm.setBounds(100, 100, 529, 342);
+		ventanaForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventanaForm.getContentPane().setLayout(null);
+				
+		//---------------------------------------------
+		JTabbedPane panelDePestañas = new JTabbedPane(JTabbedPane.TOP);
+		panelDePestañas.setBounds(0, -1, 523, 314);
+		ventanaForm.getContentPane().add(panelDePestañas);
 		
-		JLabel lblLabelRespuesta = new JLabel("RESPUESTA EN INGLÉS");
-		lblLabelRespuesta.setName("labelRespuesta");
-		lblLabelRespuesta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLabelRespuesta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
-		lblLabelRespuesta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblLabelRespuesta.setBounds(10, 146, 414, 76);
-		frame.getContentPane().add(lblLabelRespuesta);
+		JPanel pestaña1 = new JPanel(); 
+		JPanel pestaña2 = new JPanel(); 
+		pestaña1.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Check");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		//----------------------------------------------
+		JTextPane textoRespuesta = new JTextPane();
+		textoRespuesta.setText("RESPUESTA EN INGLES");
+		textoRespuesta.setEditable(false);
+		textoRespuesta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		textoRespuesta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		textoRespuesta.setBounds(10, 146, 498, 69);
+//		ventanaForm.getContentPane().add(textoRespuesta);
+		pestaña1.add(textoRespuesta);
+		
+		//----------------------------------------------
+		JButton botonTraducir = new JButton("Traducir");
+		botonTraducir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblLabelRespuesta.setVisible(true);
+				textoRespuesta.setVisible(true);
 			}
 		});
-		btnNewButton.setName("botonCheck");
-		btnNewButton.setBounds(181, 98, 99, 37);
-		frame.getContentPane().add(btnNewButton);
+		botonTraducir.setBounds(206, 91, 94, 44);
+//		ventanaForm.getContentPane().add(botonTraducir);
+		pestaña1.add(botonTraducir);
 		
-		JButton btnNewButton_1 = new JButton("Next");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		//---------------------------------------------
+		JTextPane textoPregunta = new JTextPane();
+		textoPregunta.setText("PREGUNTA EN ESPAÑOL");
+		textoPregunta.setEditable(false);
+		textoPregunta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		textoPregunta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		textoPregunta.setBounds(10, 11, 498, 69);
+//		ventanaForm.getContentPane().add(textoPregunta);
+		pestaña1.add(textoPregunta);
+
+		//----------------------------------------------
+		JButton botonNext = new JButton("Next");
+		botonNext.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				String vector[] = pregResp.getSiguientePregunta();
-				lblLabelPregunta.setText(vector[0]);
-				lblLabelRespuesta.setText(vector[1]);
-				lblLabelRespuesta.setVisible(false);
+				textoPregunta.setText(vector[0]);
+				textoRespuesta.setText(vector[1]);
+				textoRespuesta.setVisible(false);
 			}
-
 		});
-		btnNewButton_1.setName("botonNext");
-		btnNewButton_1.setBounds(325, 246, 99, 38);
-		frame.getContentPane().add(btnNewButton_1);
-	}
-}
+		botonNext.setBounds(430, 238, 78, 37);
+//		ventanaForm.getContentPane().add(botonNext);
+		pestaña1.add(botonNext);
+		
+		//---------------------------------------------
+		panelDePestañas.addTab("PRACTICAR", null, pestaña1, null);
+		panelDePestañas.addTab("INSERTAR FRASE", null, pestaña2, null);
+
+	} //Fin initialize()
+} //Fin clase
