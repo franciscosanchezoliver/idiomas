@@ -11,12 +11,16 @@ import java.util.Scanner;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class VentanaPrincipa {
 
 	private JFrame frame;
-
+	JLabel labelPreg = null;
+	JLabel labelResp = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,32 +42,6 @@ public class VentanaPrincipa {
 	 */
 	public VentanaPrincipa() {
 		initialize();
-		mostrarPregunta();
-		
-	}
-
-	private void mostrarPregunta() {
-		// TODO Auto-generated method stuboiulkuj
-				PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
-				preguntaRespuesta.cargarPreguntas();
-				preguntaRespuesta.cargarRespuestas();
-
-				while (true == true) {
-					Random r1 = new Random();
-					int valor = r1.nextInt(preguntaRespuesta.getPreguntas().size());
-					System.out.println(valor);
-
-					System.out.print("-" + preguntaRespuesta.getPreguntas().get(valor));
-					try {
-						Scanner scan = new Scanner(System.in);
-						scan.nextLine();
-						System.out.println(preguntaRespuesta.getRespuestas().get(valor));
-						scan.nextLine();
-					
-					} catch (Exception e) {
-						System.out.println("Francisco le come el chichi a Natalia");
-					}
-				}
 	}
 
 	/**
@@ -75,17 +53,23 @@ public class VentanaPrincipa {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(35, 21, 362, 69);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel labelPregunta = new JLabel("PREGUNTA EN ESPAÑOL");
+		labelPregunta.setBounds(35, 21, 362, 69);
+		frame.getContentPane().add(labelPregunta);
 		
 		JButton btnCheck = new JButton("Check");
+		btnCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				System.out.println("Hola");
+			}
+		});
 		btnCheck.setBounds(160, 101, 89, 23);
 		frame.getContentPane().add(btnCheck);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(35, 154, 362, 57);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel labelRespuesta = new JLabel("RESPUESTA EN INGLÉS");
+		labelRespuesta.setBounds(35, 154, 362, 57);
+		frame.getContentPane().add(labelRespuesta);
 		
 		JButton btnNext = new JButton("Next");
 		btnNext.setBounds(308, 227, 89, 23);
