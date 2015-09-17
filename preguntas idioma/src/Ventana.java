@@ -56,8 +56,6 @@ public class Ventana {
 	public Ventana() {
 		initialize();
 		createComponentMap();
-		JLabel labelPregunta =  (JLabel) getComponentByName("labelPregunta");
-		labelPregunta.setText("La Bar-Ba-Coa");
 		this.pregResp.cargarPreguntas(this.directorioEntrada);
 	}
 
@@ -92,11 +90,11 @@ public class Ventana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 496, 334);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblLabelPregunta = new JLabel("New label");
+		JLabel lblLabelPregunta = new JLabel("PREGUNTA EN ESPAÑOL");
 		lblLabelPregunta.setName("labelPregunta");
 		lblLabelPregunta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblLabelPregunta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -104,12 +102,12 @@ public class Ventana {
 		lblLabelPregunta.setBounds(10, 11, 414, 76);
 		frame.getContentPane().add(lblLabelPregunta);
 		
-		JLabel lblLabelRespuesta = new JLabel("New label");
+		JLabel lblLabelRespuesta = new JLabel("RESPUESTA EN INGLÉS");
 		lblLabelRespuesta.setName("labelRespuesta");
 		lblLabelRespuesta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLabelRespuesta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
 		lblLabelRespuesta.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		lblLabelRespuesta.setBounds(10, 163, 414, 76);
+		lblLabelRespuesta.setBounds(10, 146, 414, 76);
 		frame.getContentPane().add(lblLabelRespuesta);
 		
 		JButton btnNewButton = new JButton("Check");
@@ -120,7 +118,7 @@ public class Ventana {
 			}
 		});
 		btnNewButton.setName("botonCheck");
-		btnNewButton.setBounds(94, 99, 99, 37);
+		btnNewButton.setBounds(181, 98, 99, 37);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Next");
@@ -135,7 +133,7 @@ public class Ventana {
 
 		});
 		btnNewButton_1.setName("botonNext");
-		btnNewButton_1.setBounds(225, 98, 99, 38);
+		btnNewButton_1.setBounds(325, 246, 99, 38);
 		frame.getContentPane().add(btnNewButton_1);
 	}
 }
