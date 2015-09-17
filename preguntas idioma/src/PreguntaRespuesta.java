@@ -35,6 +35,17 @@ public class PreguntaRespuesta {
 		vector[0]= (String) key;
 		vector[1]= this.entrevista.get(key);
 		return vector;
-	}
+	} //Fin getSiguientePregunta
+	
+	public void escribirNuevaFrase (String[]nuevaPregResp, String directorioEntrada){
+		FileWriter fichero = null;
+		try {
+			fichero = new FileWriter(new File(directorioEntrada), true);
+			fichero.write(nuevaPregResp[0] + "-" + nuevaPregResp[1] + "\n");
+			fichero.close();
+		} catch (Exception ex) {
+			System.out.println("Mensaje de la excepción: " + ex.getMessage());
+		}
+	} //Fin escribirNuevaFrase
 	
 } // Fin clase

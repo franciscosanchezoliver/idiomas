@@ -1,9 +1,13 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
 import java.io.File;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Ventana extends JFrame{
 
@@ -13,21 +17,6 @@ public class Ventana extends JFrame{
 	private String directorioEntrada = System.getProperty("user.dir")
 			+ File.separator + "src" + File.separator + "PregResp";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ventana window = new Ventana();
-					window.ventanaForm.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -53,12 +42,13 @@ public class Ventana extends JFrame{
 				
 		//---------------------------------------------
 		JTabbedPane panelDePestañas = new JTabbedPane(JTabbedPane.TOP);
-		panelDePestañas.setBounds(0, -1, 523, 314);
+		panelDePestañas.setBounds(0, 0, 523, 314);
 		ventanaForm.getContentPane().add(panelDePestañas);
 		
 		JPanel pestaña1 = new JPanel(); 
 		JPanel pestaña2 = new JPanel(); 
 		pestaña1.setLayout(null);
+		pestaña2.setLayout(null);
 		
 		//----------------------------------------------
 		JTextPane textoRespuesta = new JTextPane();
@@ -107,9 +97,80 @@ public class Ventana extends JFrame{
 //		ventanaForm.getContentPane().add(botonNext);
 		pestaña1.add(botonNext);
 		
+		//---------------------------------------------		
+		JTextArea insertarTxtEnEspañol = new JTextArea();
+		insertarTxtEnEspañol.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				insertarTxtEnEspañol.setText("");
+			}
+		});
+		insertarTxtEnEspañol.setText("Escriba el texto en español");
+		insertarTxtEnEspañol.setBounds(10, 11, 498, 76);
+		insertarTxtEnEspañol.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		insertarTxtEnEspañol.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		pestaña2.add(insertarTxtEnEspañol);
+		
 		//---------------------------------------------
+		JTextArea insertarTxtEnIngles = new JTextArea();
+		insertarTxtEnIngles.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				insertarTxtEnIngles.setText("");
+			}
+		});
+		insertarTxtEnIngles.setText("Escriba la traduccion al ingles");
+		insertarTxtEnIngles.setBounds(10, 107, 498, 76);
+		insertarTxtEnIngles.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		insertarTxtEnIngles.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		pestaña2.add(insertarTxtEnIngles);
+		
+		//--------------------------------------------
+		JButton botonGuardar = new JButton("GUARDAR");
+		botonGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String[] vector = new String[2];
+				vector[0] = insertarTxtEnEspañol.getText();
+				vector[1] = insertarTxtEnIngles.getText();
+
+				if (vector[0].equals("") || vector[1].equals("")) {
+					JOptionPane.showMessageDialog(null,	"Escriba una frase y su traducción, por favor.");
+					insertarTxtEnEspañol.setText("Escriba el texto en español");
+					insertarTxtEnIngles.setText("Escriba la traduccion al ingles");
+				} else {
+					pregResp.escribirNuevaFrase(vector, directorioEntrada);
+					// pregResp.cargarPreguntas(directorioEntrada);
+					JOptionPane.showMessageDialog(null,	"Insertado correctamente");
+					insertarTxtEnIngles.setText("");
+					insertarTxtEnEspañol.setText("");
+				}
+			}
+		});
+		botonGuardar.setBounds(199, 208, 116, 41);
+		pestaña2.add(botonGuardar);
+
+		//--------------------------------------------
 		panelDePestañas.addTab("PRACTICAR", null, pestaña1, null);
 		panelDePestañas.addTab("INSERTAR FRASE", null, pestaña2, null);
-
 	} //Fin initialize()
+	
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Ventana window = new Ventana();
+					window.ventanaForm.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
 } //Fin clase
