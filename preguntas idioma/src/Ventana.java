@@ -60,12 +60,27 @@ public class Ventana extends JFrame{
 //		ventanaForm.getContentPane().add(textoRespuesta);
 		pestaña1.add(textoRespuesta);
 		
+		//---------------------------------------------	
+		Icon icono = new ImageIcon("/altavoz2.png");
+		JButton botonEscuchar = new JButton(icono);
+		botonEscuchar.setVisible(false);
+		botonEscuchar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+					FreeTTS freeTTS = new FreeTTS(textoRespuesta.getText());
+					freeTTS.speak();
+			}
+		});
+		botonEscuchar.setBounds(350, 238, 52, 37);
+		pestaña1.add(botonEscuchar);
+				
 		//----------------------------------------------
 		JButton botonTraducir = new JButton("Traducir");
 		botonTraducir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textoRespuesta.setVisible(true);
+				botonEscuchar.setVisible(true);
 			}
 		});
 		botonTraducir.setBounds(206, 91, 94, 44);
@@ -91,6 +106,7 @@ public class Ventana extends JFrame{
 				textoPregunta.setText(vector[0]);
 				textoRespuesta.setText(vector[1]);
 				textoRespuesta.setVisible(false);
+				botonEscuchar.setVisible(false);
 			}
 		});
 		botonNext.setBounds(430, 238, 78, 37);
@@ -98,18 +114,6 @@ public class Ventana extends JFrame{
 		pestaña1.add(botonNext);
 		
 		//---------------------------------------------
-		Icon icono = new ImageIcon("/altavoz2.png");
-		JButton botonEscuchar = new JButton(icono);
-		botonEscuchar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-					FreeTTS freeTTS = new FreeTTS(textoRespuesta.getText());
-					freeTTS.speak();
-			}
-		});
-		botonEscuchar.setBounds(350, 238, 52, 37);
-		pestaña1.add(botonEscuchar);
-		//---------------------------------------------		
 		JTextArea insertarTxtEnEspañol = new JTextArea();
 		insertarTxtEnEspañol.addMouseListener(new MouseAdapter() {
 			@Override
