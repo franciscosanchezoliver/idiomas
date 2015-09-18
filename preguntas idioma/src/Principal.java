@@ -8,7 +8,6 @@ public class Principal {
 						+ File.separator + "PregResp";
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
 		preguntaRespuesta.cargarPreguntas(directorioEntrada);
 		preguntaRespuesta.getSiguientePregunta();

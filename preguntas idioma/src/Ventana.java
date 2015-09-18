@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import java.io.File;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Ventana extends JFrame{
 
@@ -37,6 +39,7 @@ public class Ventana extends JFrame{
 		ventanaForm.setBounds(100, 100, 529, 342);
 		ventanaForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventanaForm.getContentPane().setLayout(null);
+		paintComponents(getGraphics());
 				
 		//---------------------------------------------
 		JTabbedPane panelDePestañas = new JTabbedPane(JTabbedPane.TOP);
@@ -60,8 +63,7 @@ public class Ventana extends JFrame{
 		pestaña1.add(textoRespuesta);
 		
 		//---------------------------------------------	
-		Icon icono = new ImageIcon("/altavoz2.png");
-		JButton botonEscuchar = new JButton(icono);
+		JButton botonEscuchar = new JButton(new ImageIcon("src/altavoz2.png"));
 		botonEscuchar.setVisible(false);
 		botonEscuchar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -70,7 +72,7 @@ public class Ventana extends JFrame{
 					freeTTS.speak();
 			}
 		});
-		botonEscuchar.setBounds(350, 238, 52, 37);
+		botonEscuchar.setBounds(379, 238, 41, 37);
 		pestaña1.add(botonEscuchar);
 				
 		//----------------------------------------------
@@ -114,6 +116,10 @@ public class Ventana extends JFrame{
 		
 		//---------------------------------------------
 		JTextArea insertarTxtEnEspañol = new JTextArea();
+		insertarTxtEnEspañol.setLineWrap(true);
+		JScrollPane barraLateralTxtEspañol = new JScrollPane(insertarTxtEnEspañol, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		barraLateralTxtEspañol.setSize(498, 76);
+		barraLateralTxtEspañol.setLocation(10, 11);
 		insertarTxtEnEspañol.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,13 +127,17 @@ public class Ventana extends JFrame{
 			}
 		});
 		insertarTxtEnEspañol.setText("Escriba el texto en español");
-		insertarTxtEnEspañol.setBounds(10, 11, 498, 76);
 		insertarTxtEnEspañol.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		insertarTxtEnEspañol.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
-		pestaña2.add(insertarTxtEnEspañol);
+		pestaña2.add(barraLateralTxtEspañol);
 		
 		//---------------------------------------------
 		JTextArea insertarTxtEnIngles = new JTextArea();
+		insertarTxtEnIngles.setLineWrap(true);
+		JScrollPane barraLateralTxtIngles = new JScrollPane(insertarTxtEnIngles,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		barraLateralTxtIngles.setSize(498, 76);
+		barraLateralTxtIngles.setLocation(10, 107);
+		
 		insertarTxtEnIngles.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -135,10 +145,9 @@ public class Ventana extends JFrame{
 			}
 		});
 		insertarTxtEnIngles.setText("Escriba la traduccion al ingles");
-		insertarTxtEnIngles.setBounds(10, 107, 498, 76);
 		insertarTxtEnIngles.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		insertarTxtEnIngles.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
-		pestaña2.add(insertarTxtEnIngles);
+		pestaña2.add(barraLateralTxtIngles);
 		
 		//--------------------------------------------
 		JButton botonGuardar = new JButton("GUARDAR");
@@ -155,7 +164,7 @@ public class Ventana extends JFrame{
 					insertarTxtEnIngles.setText("Escriba la traduccion al ingles");
 				} else {
 					pregResp.escribirNuevaFrase(vector, directorioEntrada);
-					// pregResp.cargarPreguntas(directorioEntrada);
+					pregResp.cargarPreguntas(directorioEntrada);
 					JOptionPane.showMessageDialog(null,	"Insertado correctamente");
 					insertarTxtEnIngles.setText("");
 					insertarTxtEnEspañol.setText("");
@@ -187,5 +196,4 @@ public class Ventana extends JFrame{
 			}
 		});
 	} //Fin main
-	
 } //Fin clase

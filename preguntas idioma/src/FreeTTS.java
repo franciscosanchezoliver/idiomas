@@ -3,7 +3,7 @@ import com.sun.speech.freetts.VoiceManager;
 
 public class FreeTTS {
 
-	private static final String VOICENAME_kevin = "kevin16";
+	private static final String VOICENAME_kevin = "kevin";
 	private String text; // string to speech
 
 	public FreeTTS(String text) {
