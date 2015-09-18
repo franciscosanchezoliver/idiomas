@@ -97,6 +97,18 @@ public class Ventana extends JFrame{
 //		ventanaForm.getContentPane().add(botonNext);
 		pestaña1.add(botonNext);
 		
+		//---------------------------------------------
+		Icon icono = new ImageIcon("/altavoz2.png");
+		JButton botonEscuchar = new JButton(icono);
+		botonEscuchar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+					FreeTTS freeTTS = new FreeTTS(textoRespuesta.getText());
+					freeTTS.speak();
+			}
+		});
+		botonEscuchar.setBounds(350, 238, 52, 37);
+		pestaña1.add(botonEscuchar);
 		//---------------------------------------------		
 		JTextArea insertarTxtEnEspañol = new JTextArea();
 		insertarTxtEnEspañol.addMouseListener(new MouseAdapter() {
@@ -153,6 +165,7 @@ public class Ventana extends JFrame{
 		//--------------------------------------------
 		panelDePestañas.addTab("PRACTICAR", null, pestaña1, null);
 		panelDePestañas.addTab("INSERTAR FRASE", null, pestaña2, null);
+		
 	} //Fin initialize()
 	
 	
@@ -171,6 +184,4 @@ public class Ventana extends JFrame{
 			}
 		});
 	}
-
-	
 } //Fin clase
