@@ -6,8 +6,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import java.io.File;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class Ventana extends JFrame{
 
@@ -47,7 +45,8 @@ public class Ventana extends JFrame{
 		
 		JPanel pestaña1 = new JPanel(); 
 		JPanel pestaña2 = new JPanel(); 
-		pestaña1.setLayout(null);
+		
+		pestaña1.setLayout(null); //Que me deje poner los componentes donde desee
 		pestaña2.setLayout(null);
 		
 		//----------------------------------------------
@@ -187,5 +186,6 @@ public class Ventana extends JFrame{
 				}
 			}
 		});
-	}
+	} //Fin main
+	
 } //Fin clase
