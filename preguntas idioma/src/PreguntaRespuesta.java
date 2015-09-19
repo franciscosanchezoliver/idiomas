@@ -1,17 +1,22 @@
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 public class PreguntaRespuesta {
 
 	Map<String, String> entrevista = new HashMap<>();
 
 	public void cargarPreguntas(String archivoEntrada){
+		
 		String cadena;
 		StringTokenizer tokenizer=null;
 		BufferedReader in = null;
 		String pregunta = "", respuesta= "";
 		
 		try{
+//			in = new BufferedReader(new FileReader(fichero));
 			in = new BufferedReader(new FileReader(archivoEntrada));
 		    while((cadena = in.readLine()) != null){
 		    	tokenizer = new StringTokenizer(cadena, "-");
