@@ -88,9 +88,7 @@ public class Ventana extends JFrame{
 
         		panelDePestañas.addTab("PRACTICAR", null, pestaña2, null);
         		panelDePestañas.addTab("INSERTAR FRASE", null, pestaña3, null);
-        		panelDePestañas.addTab("INFORMACION", null, pestana4, null);
-        		
-        		}
+        		panelDePestañas.addTab("INFORMACION", null, pestana4, null);        		}
         	}
         });
 		
@@ -230,7 +228,7 @@ public class Ventana extends JFrame{
 		textRecordatorio.setEditable(false);
 		textRecordatorio.setText(recordatorio());
 		textRecordatorio.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
-		textRecordatorio.setBounds(21, 84, 468, 180);
+		textRecordatorio.setBounds(21, 84, 468, 162);
 		pestaña1.add(textRecordatorio);
 		
 		//-------------------------------------------
@@ -241,8 +239,7 @@ public class Ventana extends JFrame{
 	
 	private String recordatorio() {
 		return "Recuerda:\n" + "-> 1. El archivo tiene que ser .txt\n" + 
-					"-> 2. No debe tener saltos de línea en blanco ni al final del archivo ni al principio.\n" + 
-					"-> 3. El formato es:\n(Frase en español) - (Frase en inglés)\nEs importante el guión entre las frases.\n" +
+					"-> 2. El formato es:\n(Frase en español) - (Frase en inglés)\nEs importante el guión entre las frases.\n\n" +
 					"\t\t¡QUE LO DISFRUTES!";
 	}
 

@@ -8,27 +8,30 @@ public class PreguntaRespuesta {
 
 	Map<String, String> entrevista = new HashMap<>();
 
-	public void cargarPreguntas(String archivoEntrada){
-		
+	public void cargarPreguntas(String archivoEntrada) {
+
+		Scanner entrada = new Scanner(System.in);
 		String cadena;
-		StringTokenizer tokenizer=null;
-		BufferedReader in = null;
-		String pregunta = "", respuesta= "";
-		
-		try{
-//			in = new BufferedReader(new FileReader(fichero));
-			in = new BufferedReader(new FileReader(archivoEntrada));
-		    while((cadena = in.readLine()) != null){
-		    	tokenizer = new StringTokenizer(cadena, "-");
-		    	pregunta = tokenizer.nextToken();
-		    	respuesta = tokenizer.nextToken();
-		    	this.entrevista.put(pregunta, respuesta);
-		    }
-		    in.close();
-		}catch (IOException e){
+		// StringTokenizer tokenizer=null;
+		// BufferedReader in = null;
+		String pregunta = "", respuesta = "";
+
+		try {
+			Scanner s = new Scanner(new File(archivoEntrada));
+			while (s.hasNextLine()) {
+				String line = s.nextLine();
+				String[] items = line.split("-");
+				if (!items[0].trim().equals("") && !items[1].trim().equals("")) {
+					pregunta = items[0];
+					respuesta = items[1];
+					this.entrevista.put(pregunta, respuesta);
+				}
+			}
+			s.close();
+		} catch (IOException e) {
 			System.out.println("El error es el siguiente: " + e);
 		}
-	} //Fin cargarPreguntas
+	} // Fin cargarPreguntas
 	
 	public String[] getSiguientePregunta(){
 		String[] vector = new String [2];
