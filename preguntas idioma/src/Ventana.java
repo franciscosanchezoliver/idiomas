@@ -86,6 +86,10 @@ public class Ventana extends JFrame{
         		pregResp.cargarPreguntas(fichero.getPath());
         		rutaArchivo.setText(fichero.getPath());
 
+        		panelDePestañas.addTab("PRACTICAR", null, pestaña2, null);
+        		panelDePestañas.addTab("INSERTAR FRASE", null, pestaña3, null);
+        		panelDePestañas.addTab("INFORMACION", null, pestana4, null);
+        		
         		}
         	}
         });
@@ -223,9 +227,6 @@ public class Ventana extends JFrame{
 		
 		//--------------------------------------------
 		panelDePestañas.addTab("ABRIR ARCHIVO", null, pestaña1, null);
-		panelDePestañas.addTab("PRACTICAR", null, pestaña2, null);
-		panelDePestañas.addTab("INSERTAR FRASE", null, pestaña3, null);
-		panelDePestañas.addTab("INFORMACION", null, pestana4, null);
 		
 	} //Fin initialize()
 	
