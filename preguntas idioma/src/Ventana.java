@@ -226,11 +226,26 @@ public class Ventana extends JFrame{
 		pestana4.add(textoInformacion);
 		
 		//--------------------------------------------
+		JTextPane textRecordatorio = new JTextPane();
+		textRecordatorio.setEditable(false);
+		textRecordatorio.setText(recordatorio());
+		textRecordatorio.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+		textRecordatorio.setBounds(21, 84, 468, 180);
+		pestaña1.add(textRecordatorio);
+		
+		//-------------------------------------------
 		panelDePestañas.addTab("ABRIR ARCHIVO", null, pestaña1, null);
 		
 	} //Fin initialize()
 	
 	
+	private String recordatorio() {
+		return "Recuerda:\n" + "-> 1. El archivo tiene que ser .txt\n" + 
+					"-> 2. No debe tener saltos de línea en blanco ni al final del archivo ni al principio.\n" + 
+					"-> 3. El formato es:\n(Frase en español) - (Frase en inglés)\nEs importante el guión entre las frases.\n" +
+					"\t\t¡QUE LO DISFRUTES!";
+	}
+
 	/**
 	 * Launch the application.
 	 */

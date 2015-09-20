@@ -26,7 +26,7 @@ public class PreguntaRespuesta {
 		    }
 		    in.close();
 		}catch (IOException e){
-			System.out.println(e);
+			System.out.println("El error es el siguiente: " + e);
 		}
 	} //Fin cargarPreguntas
 	
@@ -45,7 +45,7 @@ public class PreguntaRespuesta {
 		FileWriter fichero = null;
 		try {
 			fichero = new FileWriter(new File(directorioEntrada), true);
-			fichero.write(nuevaPregResp[0] + "-" + nuevaPregResp[1] + "\n");
+			fichero.write("\n" + nuevaPregResp[0] + "-" + nuevaPregResp[1]);
 			fichero.close();
 		} catch (Exception ex) {
 			System.out.println("Mensaje de la excepción: " + ex.getMessage());
